@@ -1,0 +1,12 @@
+#2
+.get(): This is a method provided by Express that you can use to define a route for handling HTTP GET requests. The HTTP GET method is commonly used for fetching data from a specified resource.
+
+
+Arguments for app.get():
+
+The first argument is the path for the route. It's the part of the URL after the domain. For example, if you want to handle requests to http://yourdomain.com/about, then the path would be '/about'.
+The second argument is a callback function that specifies what should happen when a request is made to that route. This function takes two arguments: req (request) and res (response). The req object contains information about the incoming request, and the res object is used to send a response back to the client.
+
+#3
+__dirname is a Node global variable that represents the current working directory of the script that contains it
+sendFile(PATH) to send files into the root path
