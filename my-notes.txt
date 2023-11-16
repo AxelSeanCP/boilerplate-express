@@ -1,0 +1,71 @@
+#2
+.get(): This is a method provided by Express that you can use to define a route for handling HTTP GET requests. The HTTP GET method is commonly used for fetching data from a specified resource.
+
+to use .get() you need to add "/whateveryouwant" inside the url
+
+Arguments for app.get():
+
+The first argument is the path for the route. It's the part of the URL after the domain. For example, if you want to handle requests to http://yourdomain.com/about, then the path would be '/about'.
+The second argument is a callback function that specifies what should happen when a request is made to that route. This function takes two arguments: req (request) and res (response). The req object contains information about the incoming request, and the res object is used to send a response back to the client.
+
+#3
+__dirname is a Node global variable that represents the current working directory of the script that contains it
+sendFile(PATH) to send files into the root path
+
+#4 
+to use middleware use app.use(<PATH>, <FUNCTION>)
+
+#6 
+env file is used to store data that you want to keep private or hidden
+to use env file first add dotenv package and then type require('dotenv').config(); at the top
+while writing the variable dont separate the equal sign => MESSAGE_STYLE='uppercase';
+
+#7
+middleware must be written at the top level since Express evaluates functions in the order they appear in the code
+everytime i move routes it will log an output
+next() is used to continue to the next function so that it wont be stuck
+if you dont want to use next() then just send a respond using res()
+
+#9
+parameters string delimited by ":"
+example : 
+route_path: '/user/:userId/book/:bookId'
+actual_request_URL: '/user/546/book/6754'
+req.params: {userId: '546', bookId: '6754'}
+
+my path : 
+route_path: /:word/echo
+":word" is accepted as parameters so the url can be anything
+actual_url: /meltryllis/echo
+
+the parameters are stored inside req.params
+to get the parameters you can use destructuring, example : 
+
+route_path: /:word/title/:number/code
+actual_url: /meltryllis/title/416483/code
+req.params: {word: 'meltryllis', number: '416483'}
+
+const { title , number } = req.params;
+
+#10
+query string delimited by "?" and includes field=value couples and the couples are separated by "&"
+
+route_path: '/library'
+actual_request_URL: '/library?userId=546&bookId=6754'
+req.query: {userId: '546', bookId: '6754'}
+
+when destructuring multiple values if the properties name are not matching with the variables name then use this 
+{pname: varname, pname2: varname2}
+
+#11
+POST is used to send data to create new items in the database (a new user, or a new blog post)
+
+In these kind of requests, the data doesn’t appear in the URL, it is hidden in the request body. The body is a part of the HTTP request, also called the payload. Even though the data is not visible in the URL, this does not mean that it is private
+
+In this exercise, you will use a URL encoded body. To parse the data coming from POST requests, you must use the body-parser package. This package allows you to use a series of middleware, which can decode data in different formats
+
+#12
+in the html forms the action is reffered to "/name" with a post method
+<form action="/name" method="post">
+when the form is submitted it sends a post request to #12 API
+and then it responds with the first and last name that is stored inside the req.body
